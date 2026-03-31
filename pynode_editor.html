@@ -29,6 +29,14 @@
                             src="images/controls/import.png" width="16" height="16"></a></h3></div>
                     <div class="appSectionBarIcon"><h3><a href="" onclick="userSaveCode(); return false;"><img
                             src="images/controls/save.png" width="16" height="16"></a></h3></div>
+                    <div class="appSectionBarIcon">
+                        <h3>
+                            <a href="" onclick="toggleVimMode(); return false;" id="vimToggleBtn" 
+                                style="font-size:11px; font-family:monospace; opacity:0.4; text-decoration:none;">
+                            VIM
+                            </a>
+                        </h3>
+                    </div>
                 </div>
             </div>
             <div id="editorBox">
@@ -73,6 +81,30 @@
 <input id="file-input" type="file" name="name" style="display: none;"/>
 <script type="text/javascript" src="js/filesaver/filesaver.min.js?version=0.9.2"></script>
 <script>
+    var vimEnabled = false;
+    var vimLoaded  = false;
+
+    function toggleVimMode() {
+        vimEnabled = !vimEnabled;
+        var btn = document.getElementById('vimToggleBtn');
+
+        if (vimEnabled) {
+            editor.setKeyboardHandler('ace/keyboard/vim');
+            if (!vimLoaded) {
+            ace.config.loadModule('ace/keyboard/vim', function(module) {
+                module.CodeMirror.Vim.map('jk', '<Esc>', 'insert');
+                vimLoaded = true;
+            });
+            }
+            btn.style.opacity = '1';
+            btn.title = 'Vim mode ON';
+        } else {
+            editor.setKeyboardHandler(null);
+            btn.style.opacity = '0.4';
+            btn.title = 'Vim mode OFF';
+        }
+    }
+
     function userLoadCode(event) {
         var files = event.target.files;
         var file = null;

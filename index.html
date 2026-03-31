@@ -271,6 +271,14 @@
                                 <div class="appSectionBarIcon"><h3><a href=""
                                                                       onclick="userSaveCode(); return false;"><img
                                         src="images/controls/save.png" width="16" height="16"></a></h3></div>
+                                <div class="appSectionBarIcon">
+                                    <h3>
+                                        <a href="" onclick="toggleVimMode(); return false;" id="vimToggleBtn" 
+                                            style="font-size:11px; font-family:monospace; opacity:0.4; text-decoration:none;">
+                                        VIM
+                                        </a>
+                                    </h3>
+                                </div>
                             </div>
                         </div>
                         <div id="editorBox">
@@ -860,6 +868,30 @@
         var text = getCode();
         var blob = new Blob([text], {type: "text/plain;charset=utf-8;"});
         saveAs(blob, "project.pynode");
+    }
+    
+    var vimEnabled = false;
+    var vimLoaded  = false;
+
+    function toggleVimMode() {
+        vimEnabled = !vimEnabled;
+        var btn = document.getElementById('vimToggleBtn');
+
+        if (vimEnabled) {
+            editor.setKeyboardHandler('ace/keyboard/vim');
+            if (!vimLoaded) {
+            ace.config.loadModule('ace/keyboard/vim', function(module) {
+                module.CodeMirror.Vim.map('jk', '<Esc>', 'insert');
+                vimLoaded = true;
+            });
+            }
+            btn.style.opacity = '1';
+            btn.title = 'Vim mode ON';
+        } else {
+            editor.setKeyboardHandler(null);
+            btn.style.opacity = '0.4';
+            btn.title = 'Vim mode OFF';
+        }
     }
 
     document.getElementById('file-input').addEventListener('change', userLoadCode, false);
