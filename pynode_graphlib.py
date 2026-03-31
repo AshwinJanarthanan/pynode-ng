@@ -315,6 +315,55 @@ class Graph:
         self._has_edge_cache = {}
         self._spread = 80
 
+    def is_empty(self):
+        return len(self._nodes) == 0
+
+    def __dfs(self, start=None, visited=None):
+        if visited is None:
+            visited = set()
+        if start is None:
+            if self.is_empty():
+                return visited
+            start = self.nodes()[0]
+
+        visited.add(start.id())
+        for n in start.adjacent_nodes():
+            if n.id() not in visited:
+                self.__dfs(n, visited)
+        return visited
+
+    def is_connected(self):
+        if self.is_empty():
+            return True
+        return len(self.__dfs()) == self.order()
+
+    def is_cyclic(self):
+        if self.is_empty() or self.order() <= 1:
+            return False
+
+        visited_global = set()
+
+        for start in self.nodes():
+            if start.id() in visited_global:
+                continue
+
+            component_nodes = self.__dfs(start, set())
+            visited_global.update(component_nodes)
+
+            comp_edge_count = 0
+            for e in self._edges:
+                u = e._source._id
+                v = e._target._id
+                if u in component_nodes and v in component_nodes:
+                    comp_edge_count += 1
+                    if u == v:
+                        return True
+
+            if comp_edge_count >= len(component_nodes):
+                return True
+
+        return False
+
     def add_node(self, *args, **kwds):
         if "node" in kwds: n = kwds["node"]
         elif len(args) > 0 and isinstance(args[0], Node): n = args[0]
@@ -415,8 +464,14 @@ class Graph:
 
     def edges_between(self, node1, node2, directed=False):
         if not self.has_node(node1) or not self.has_node(node2): return []
-        edge_list = self.node(node1).outgoing_edges() if directed else self.node(node1)._incident_edges
-        return [edge for edge in edge_list if edge._target is self.node(node2) or edge._source is self.node(node2)]
+        n1, n2 = self.node(node1), self.node(node2)
+        edge_list = n1.outgoing_edges() if directed else n1._incident_edges
+        return [
+            edge for edge in edge_list
+            if (edge._source is n1 and edge._target is n2)
+            or (not directed and edge._source is n2 and edge._target is n1)
+        ]
+        
     # Deprecated
     def edges_between_directed(self, source, target):
         return self.edges_between(source, target, True)
