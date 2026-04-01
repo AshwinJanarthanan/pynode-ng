@@ -1,0 +1,129 @@
+                <h1>Documentation</h1>
+                <h4>&nbsp;</h4>
+                <h2>Graph</h2>
+                <ul>
+                    <li><p><code>graph.add_node(node)</code> - Adds a node to the graph.</p></li>
+                    <li><p><code>graph.add_node(id=None, value=id)</code> - Creates a <code class="codeInline">Node(id, value)</code> and adds it to the graph.</p></li>
+                    <li><p><code>graph.remove_node(node)</code> - Removes a node from the graph.</p></li>
+                    <li><p><code>graph.node(id)</code> - Returns a node in the graph by its <code class="codeInline">id</code>.</p></li>
+                    <li><p><code>graph.nodes()</code> - Returns a list of all nodes in the graph.</p></li>
+                    <p>&nbsp;</p>
+                    <li><p><code>graph.add_edge(edge)</code> - Adds an edge to the graph.</p></li>
+                    <li><p><code>graph.add_edge(source, target, weight=None, directed=False)</code> - Creates an <code class="codeInline">Edge(source, target, weight, directed)</code> and adds it to the graph.</p></li>
+                    <li><p><code>graph.remove_edge(edge)</code> - Removes an edge from the graph.</p></li>
+                    <li><p><code>graph.remove_edge(node1, node2, directed=False)</code> - Removes edge(s) between <code class="codeInline">node1</code> and <code class="codeInline">node2</code>. If <code class="codeInline">directed</code> is set, only edges beginning at <code class="codeInline">node1</code> will be removed.</p></li>
+                    <p>&nbsp;</p>
+                    <li><p><code>graph.has_node(node)</code> - Checks whether a node has been added to the graph.</p></li>
+                    <li><p><code>graph.has_edge(edge)</code> - Checks whether an edge has been added to the graph.</p></li>
+                    <li><p><code>graph.adjacent(node1, node2, directed=False)</code> - Checks whether an edge exists between <code class="codeInline">node1</code> and <code class="codeInline">node2</code>. If <code class="codeInline">directed</code> is set, the edge must begin at <code class="codeInline">node1</code>.</p></li>
+                    <li><p><code>graph.edges_between(node1, node2, directed=False)</code> - Returns a list of all edges between <code class="codeInline">node1</code> and <code class="codeInline">node2</code>. If <code class="codeInline">directed</code> is set, only edges beginning at <code class="codeInline">node1</code> will be included.</p></li>
+                    <p>&nbsp;</p>
+                    <li><p><code>graph.set_directed(directed=True)</code> - Sets whether all edges in the graph are directed.</p></li>
+                    <li><p><code>graph.adjacency_matrix()</code> - Creates and returns an adjacency matrix (2-dimensional dictionary, using node <code class="codeInline">id</code> values as keys) for the graph.</p></li>
+                    <li><p><code>graph.add_all(elements)</code> - Adds a list of <code class="codeInline">Node</code> and/or <code class="codeInline">Edge</code> elements to the graph.</p></li>
+                    <li><p><code>graph.remove_all(elements)</code> - Removes a list of <code class="codeInline">Node</code> and/or <code class="codeInline">Edge</code> elements from the graph.</p></li>
+                    <li><p><code>graph.random(order, size, connected=True, multigraph=False, initial_id=0)</code> - Returns a list of randomly connected nodes and edges.</p></li>
+                    <li><p><code>graph.order()</code>, <code>graph.size()</code> - Returns the number of nodes/edges in the graph.</p></li>
+                    <li><p><code>graph.is_connected() -> Boolean</code> - Checks if the graph is connected.</p></li>
+                    <li><p><code>graph.is_cyclic() -> Boolean</code> - Checks if the graph contain cycle.</p></li>
+                    <li><p><code>graph.is_empty() -> Boolean</code> - Checks if the graph is empty.</p></li>
+                    <li><p><code>graph.clear()</code> - Deletes all nodes and edges from the graph.</p></li>
+                </ul>
+                <p>Note: All functions containing node parameters accept either a <code class="codeInline">Node</code> instance or node <code class="codeInline">id</code> value.</p>
+                <h2>&nbsp;</h2>
+                <h2>Node</h2>
+                <ul>
+                    <li><p><code>Node(id=None, value=id)</code> - Creates a node with the specified <code class="codeInline">id</code> and <code class="codeInline">value</code>. Assigns a unique <code class="codeInline">id</code> integer if the specified <code class="codeInline">id</code> is <code class="codeInline">None</code>.</p></li>
+                    <li><p><code>node.id()</code> - Returns the <code class="codeInline">id</code> of the node.</p></li>
+                    <li><p><code>node.set_value()</code>, <code>node.value()</code> - Sets/gets the <code class="codeInline">value</code> of the node.</p></li>
+                    <li><p><code>node.incident_edges()</code>, <code>node.incoming_edges()</code>, <code>node.outgoing_edges()</code> - Returns a list of the node's incident/incoming/outgoing edges.</p></li>
+                    <li><p><code>node.adjacent_nodes()</code>, <code>node.predecessor_nodes()</code>, <code>node.successor_nodes()</code> - Returns a list of the node's adjacent/predecessor/successor nodes.</p></li>
+                    <li><p><code>node.degree()</code>, <code>node.indegree()</code>, <code>node.outdegree()</code> - Returns the node's degree/indegree/outdegree.</p></li>
+                    <li><p><code>node.set_attribute(name, value)</code>, <code>node.attribute(name)</code> - Sets/gets custom attributes for the node.</p></li>
+                    <li><p><code>node.set_priority(value)</code>, <code>node.priority(name)</code> - Sets/gets a priority value used for comparison.</p></li>
+                    <p>&nbsp;</p>
+                    <li><p><code>node.set_position(x, y, relative=False)</code> - Sets the static position of the node.</p></li>
+                    <li><p><code>node.position()</code> - Returns a tuple with the (x, y) coordinates of the node.</p></li>
+                    <li><p><code>node.set_label(value, label_id=0)</code>, <code>node.label(label_id)</code> - Sets/gets the value of additional labels for the node.</p></li>
+                    <li><p><code>node.set_size(size=12)</code>, <code>node.size()</code> - Sets/gets the radius of the node.</p></li>
+                    <li><p><code>node.set_color(color=Color.DARK_GREY)</code>, <code>node.color()</code> - Sets/gets the color of the node.</p></li>
+                    <li><p><code>node.set_value_style(size=13, color=Color.WHITE, outline=None)</code> - Sets the appearance of the node's value text.</p></li>
+                    <li><p><code>node.set_label_style(size=10, color=Color.GREY, outline=None, lable_id=None)</code> - Sets the appearance of the node's label text.</p></li>
+                    <li><p><code>node.highlight(color=node.color(), size=node.size()*1.5)</code> - Performs a highlight animation.</p></li>
+                    <li><p><code>node.incoming_nodes()-> [node]</code> - Get a list of incoming nodes</p></li>
+                    <li><p><code>node.outgoing_nodes()-> [node]</code> - Get a list of outgoing nodes</p></li>
+                </ul>
+                <p>&nbsp;</p>
+                <h2>Edge</h2>
+                <ul>
+                    <li><p><code>Edge(source, target, weight=None, directed=False)</code> - Creates an edge between the specified source and target nodes.</p></li>
+                    <li><p><code>edge.source()</code>, <code>edge.target()</code> - Returns the edge's source/target nodes.</p></li>
+                    <li><p><code>edge.set_weight(weight=None)</code>, <code>edge.weight()</code> - Sets/gets the weight of the edge.</p></li>
+                    <li><p><code>edge.set_directed(directed=True)</code>, <code>edge.directed()</code> - Sets/gets whether the edge is directed.</p></li>
+                    <li><p><code>edge.other_node(node)</code> - Returns a node connected by the edge, other than the node specified.</p></li>
+                    <li><p><code>edge.set_attribute(name, value)</code>, <code>edge.attribute(name)</code> - Sets/gets custom attributes for the edge.</p></li>
+                    <li><p><code>edge.set_priority(value)</code>, <code>edge.priority(name)</code> - Sets/gets a priority value used for comparison.</p></li>
+                    <p>&nbsp;</p>
+                    <li><p><code>edge.set_width(width=2)</code>, <code>edge.width()</code> - Sets/gets the width of the edge.</p></li>
+                    <li><p><code>edge.set_color(color=Color.LIGHT_GREY)</code>, <code>edge.color()</code> - Sets/gets the color of the edge.</p></li>
+                    <li><p><code>edge.set_weight_style(size=10, color=Color.GREY, outline=None)</code> - Sets the appearance of the edge's weight text.</p></li>
+                    <li><p><code>edge.highlight(color=edge.color(), width=edge.width()*2)</code> - Performs a highlight animation.</p></li>
+                    <li><p><code>edge.traverse(initial_node=edge.source(), color=Color.RED, keep_path=True)</code> - Performs a traversal animation on the edge.</p></li>
+                </ul>
+                <p>&nbsp;</p>
+                <h2>Miscellaneous</h2>
+                <ul>
+                    <li><p><code>Color(red, green, blue)</code> - Custom color for use in node and edge animations, using 0-255 values for each component.</p></li>
+                    <li><p><code>Color.RED</code>, <code>Color.GREEN</code>, <code>Color.BLUE</code>, <code>Color.YELLOW</code>, <code>Color.WHITE</code>, <code>Color.LIGHT_GREY</code>, <code>Color.GREY</code>, <code>Color.DARK_GREY</code>, <code>Color.BLACK</code>, <code>Color.TRANSPARENT</code> - Predefined colors.</p></li>
+                    <li><p><code>pause(time)</code> - Delays the next visual event for the specified number of milliseconds.</p></li>
+                    <li><p><code>delay(func, time, args=[], repeat=False)</code> - Executes a function after the specified number of milliseconds.</p></li>
+                    <li><p><code>cancel_delay(delay_id)</code> - Cancels a scheduled delay event.</p></li>
+                    <li><p><code>register_click_listener(func)</code> - Registers a function which will be called whenever a node is clicked.</p></li>
+                </ul>
+
+                <p>&nbsp;</p>
+
+                <h2 id="gisthelp">Publishing via Github Gists</h2>
+                <br/>
+                <p>You can load a PyNode script from Github's gists service. Gists are snippets of text or files that are public and stored on Github. They are useful for sharing small files with people. PyNode can load your script from a Gist so that you can just send somebody a link to show them a graph.</p>
+                <br/>
+                <p>Below are instructions for uploading your PyNode script to Github and then using it.</p>
+                <p>
+                    <ol>
+                        <li>Create a new Gist. If you have a Github account, <a href="https://gist.new" target="_blank">click here</a> to create a new Gist. If not, <a href="https://github.com/join?return_to=https://gist.github.com/new&source=header-gist" target="_blank">click here</a> to sign up and create one.</li>
+                        <li>Paste your PyNode script here and press the "Save" button.</li>
+                        <li>Copy the URL of the page that you are taken to after you save your Gist.</li>
+                        <li>Enter the URL on the PyNode homepage and click 'Load'.</li>
+                        <li>You should be taken to a page that shows the graph that you just created.</li>
+                    </ol>
+                </p>
+                <p><b>Note</b>: This is not a two-way sync. If you edit the script in PyNode, the Gist will not be updated. You will need to update it within Github. Gists are more for publishing your script over saving it.</p>
+            </div>
+            <div class="pageWhole" id="download">
+                <h1>Download</h1>
+                <p>&nbsp;</p>
+                <p>Download the offline version of PyNode below.</p>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <div class="pynodeDownloadBox">
+                    <div class="pynodeDownloadBoxIcon"><img src="images/download/windows.svg" width="45" height="45"></div>
+                    <div class="pynodeDownloadBoxTextWin">
+                        <a href="offline_downloads/pynode_win64.zip">Download PyNode for Windows 64-bit</a>
+                        <p class="pageTextGap">&nbsp</p>
+                        <a href="offline_downloads/pynode_win32.zip">Download PyNode for Windows 32-bit</a>
+                    </div>
+                </div>
+                <div class="pynodeDownloadBox">
+                    <div class="pynodeDownloadBoxIcon"><img src="images/download/mac.svg" width="45" height="45"></div>
+                    <div class="pynodeDownloadBoxTextMac">
+                        <a href="offline_downloads/pynode_macosx.zip">Download PyNode for macOS</a>
+                    </div>
+                </div>
+                <div class="pynodeDownloadBoxLinux">
+                    <div class="pynodeDownloadBoxIconLinux"><img src="images/download/linux.svg" width="70" height="70"></div>
+                    <div class="pynodeDownloadBoxTextLinux">
+                        <a href="offline_downloads/pynode_linux.zip">Download PyNode for Linux</a>
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+                <p>Once downloaded, unzip the archive and run demo.py.</p>

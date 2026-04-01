@@ -1,0 +1,1280 @@
+diff --git a/css/style.css b/css/style.css
+index 2d3ecc8..bd7c015 100644
+--- a/css/style.css
++++ b/css/style.css
+@@ -185,7 +185,9 @@ overflow: hidden;
+ 
+ body.pynode .pageWholeWrapper {
+ width: 100%;
++height: 100vh;
+ padding-bottom: 100px;
++background-color: #1a1c1e
+ }
+ 
+ body.pynode .pageBanner {
+@@ -210,7 +212,6 @@ background-color: #1a1c1e;
+ position: relative;
+ padding-bottom: 20px;
+ padding-top: 20px;
+-box-shadow: inset 0 16px 24px -20px rgba(0, 0, 0, 0.9), inset 0 -16px 24px -20px rgba(0, 0, 0, 0.7);
+ }
+ 
+ body.pynode .appContainer {
+@@ -601,18 +602,23 @@ padding-top: 24px;
+ height: 50px;
+ }
+ 
+-body.pynode code {
+-font-family: monospace;
+-font: 1.0rem/1.5 monospace;
+-border: 1px solid #373b41;
+-background-color: #282a2e;
+-color: #81a2be;
+-border-radius: 4px;
+-padding-left: 4px;
+-padding-right: 4px;
+-padding-bottom: 1px;
++body.pynode pre {
++    border: 1px solid #373b41;
++    background-color: #1d1f21;
++    border-radius: 15px;
++    overflow-x: auto;
++    margin: 0.5em 0;
+ }
+ 
++body.pynode pre > code {
++    font-family: monospace;
++    font: 1.0rem/1.5 monospace;
++    color: #81a2be;
++    display: block;
++    padding: 12px 16px;
++    white-space: pre;
++    overflow-x: auto;
++}
+ body.pynode .codeInline {
+ border: none;
+ }
+@@ -894,3 +900,185 @@ background: repeating-linear-gradient(
+ ) !important;
+ opacity: 0.6 !important;
+ }
++
++.topbar {
++  display: flex;
++  flex-direction: row;
++  width: 100%;
++  height: 30px;
++}
++
++.global-bar {
++    position: fixed;
++    top: 0; left: 0; right: 0;
++    height: 36px;
++    background: #14161a;
++    border-bottom: 1px solid #373b41;
++    display: flex;
++    align-items: center;
++    padding: 0 14px;
++    gap: 10px;
++    z-index: 900;
++    font-family: monospace;
++    box-sizing: border-box;
++}
++.gb-left { display: flex; align-items: center; }
++.gb-brand {
++    color: #81a2be;
++    font-weight: bold;
++    font-size: 13px;
++    letter-spacing: 0.5px;
++    user-select: none;
++    padding-right: 10px;
++    border-right: 1px solid #373b41;
++}
++.gb-cc {
++    color: #5b5d5f;
++    font-weight: bold;
++    font-size: 12px;
++    letter-spacing: 0.5px;
++    user-select: none;
++    padding-right: 10px;
++    border-right: 1px solid #373b41;
++}
++.gb-center {
++    display: flex;
++    align-items: center;
++    gap: 8px;
++    flex: 1;
++}
++.gb-right { display: flex; align-items: center; gap: 6px; }
++
++.gb-select {
++    background: #1d1f21;
++    color: #c5c8c6;
++    border: 1px solid #373b41;
++    border-radius: 4px;
++    padding: 3px 24px 3px 9px;
++    font-family: monospace;
++    font-size: 12px;
++    cursor: pointer;
++    outline: none;
++    appearance: none;
++    -webkit-appearance: none;
++    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23969896'/%3E%3C/svg%3E");
++    background-repeat: no-repeat;
++    background-position: right 7px center;
++    transition: border-color .15s;
++}
++.gb-select:hover  { border-color: #81a2be; color: #e0e0e0; }
++.gb-select:focus  { border-color: #81a2be; }
++.gb-select option { background: #1d1f21; color: #c5c8c6; }
++
++.gb-btn {
++    background: #1d1f21;
++    color: #c5c8c6;
++    border: 1px solid #373b41;
++    border-radius: 4px;
++    padding: 3px 11px;
++    font-family: monospace;
++    font-size: 12px;
++    cursor: pointer;
++    outline: none;
++    transition: border-color .15s, color .15s, background .15s;
++}
++.gb-btn:hover   { border-color: #81a2be; color: #e0e0e0; }
++.gb-btn.gb-active {
++    background: #282a2e;
++    color: #81a2be;
++    border-color: #81a2be;
++}
++
++/* Shift entire page content below the bar */
++body.pynode { padding-top: 36px !important; }
++
++/* ── Overlays ── */
++.gb-overlay-backdrop {
++    display: none;
++    position: fixed;
++    inset: 0;
++    background: rgba(0, 0, 0, 0.60);
++    backdrop-filter: blur(4px);
++    -webkit-backdrop-filter: blur(4px);
++    z-index: 1000;
++    align-items: flex-start;
++    justify-content: center;
++    padding-top: 56px;
++}
++.gb-overlay-backdrop.gb-overlay-open { display: flex; }
++
++.gb-overlay-panel {
++    background: #1d1f21;
++    border: 1px solid #373b41;
++    border-radius: 8px;
++    width: 780px;
++    max-width: 92vw;
++    max-height: 80vh;
++    display: flex;
++    flex-direction: column;
++    overflow: hidden;
++    box-shadow: 0 12px 40px rgba(0,0,0,0.7);
++    animation: gbSlideIn .15s ease;
++}
++@keyframes gbSlideIn {
++    from { opacity: 0; transform: translateY(-12px); }
++    to   { opacity: 1; transform: translateY(0); }
++}
++
++.gb-overlay-header {
++    display: flex;
++    align-items: center;
++    justify-content: space-between;
++    padding: 9px 16px;
++    background: #14161a;
++    border-bottom: 1px solid #373b41;
++    flex-shrink: 0;
++}
++.gb-overlay-title {
++    color: #81a2be;
++    font-family: monospace;
++    font-size: 13px;
++    font-weight: bold;
++    letter-spacing: 0.3px;
++}
++.gb-overlay-close {
++    background: none;
++    border: none;
++    color: #969896;
++    font-size: 15px;
++    cursor: pointer;
++    line-height: 1;
++    padding: 2px 5px;
++    border-radius: 3px;
++    transition: color .12s, background .12s;
++}
++.gb-overlay-close:hover { color: #cc6666; background: #282a2e; }
++
++.gb-overlay-body {
++    padding: 18px 22px;
++    overflow-y: auto;
++    flex: 1;
++    color: #c5c8c6;
++    font-family: monospace;
++    font-size: 13px;
++    line-height: 1.65;
++}
++.gb-overlay-body h1, .gb-overlay-body h2, .gb-overlay-body h3 {
++    color: #f0c674;
++    border-bottom: 1px solid #373b41;
++    padding-bottom: 4px;
++    margin-top: 18px;
++}
++.gb-overlay-body a { color: #81a2be; }
++.gb-overlay-body a:hover { color: #8abeb7; }
++.gb-overlay-body code, .gb-overlay-body pre {
++    background: #282a2e;
++    border: 1px solid #373b41;
++    border-radius: 4px;
++    color: #81a2be;
++    font-size: 12px;
++}
++.gb-overlay-body code { padding: 1px 5px; }
++.gb-overlay-body pre  { padding: 10px 14px; overflow-x: auto; }
++.gb-overlay-body ul, .gb-overlay-body ol { padding-left: 20px; }
++.gb-overlay-body li { margin-bottom: 5px; }
+diff --git a/index.html b/index.html
+index aca26a3..14bd36d 100644
+--- a/index.html
++++ b/index.html
+@@ -16,246 +16,63 @@
+     <script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ace.js"></script>
+     <script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ext-language_tools.js"></script>
+     <script src="https://www.unpkg.com/ace-linters@latest/build/ace-linters.js"></script>
+-    <script>
+-        var editor_exists = false;
+-        var pynode_output;
+-        var pynode_editor;
+-        var pynode_console;
+-        var enable_editor = true;
+-
+-        function outputPopup(w, h) {
+-            var left = (screen.width / 2) - (w / 2);
+-            var top = (screen.height / 2) - (h / 2);
+-            if (pynode_output !== undefined) {
+-                pynode_output.close()
+-            }
+-            pynode_output = window.open("pynode_output.html", "PyNode Output", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,width=" + w + ",height=" + h + ",left=" + left + ",top=" + top);
+-            pynode_output.onbeforeunload = function () {
+-                pynode_output = undefined;
+-            };
+-            if (window.focus) {
+-                pynode_output.focus()
+-            }
+-            return false;
+-        }
+-
+-        function editorPopup(w, h) {
+-            var left = (screen.width / 2) - (w / 2);
+-            var top = (screen.height / 2) - (h / 2);
+-            if (pynode_editor !== undefined) {
+-                pynode_editor.close()
+-            }
+-            pynode_editor = window.open("pynode_editor.html", "PyNode Editor", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,width=" + w + ",height=" + h + ",left=" + left + ",top=" + top);
+-            pynode_editor.onbeforeunload = function () {
+-                pynode_editor = undefined;
+-            };
+-            if (window.focus) {
+-                pynode_editor.focus()
+-            }
+-            return false;
+-        }
+-
+-        function consolePopup(w, h) {
+-            var left = (screen.width / 2) - (w / 2);
+-            var top = (screen.height / 2) - (h / 2);
+-            if (pynode_console !== undefined) {
+-                pynode_console.close()
+-            }
+-            pynode_console = window.open("pynode_console.html", "PyNode Console", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,width=" + w + ",height=" + h + ",left=" + left + ",top=" + top);
+-            pynode_console.onbeforeunload = function () {
+-                pynode_console = undefined;
+-            };
+-            if (window.focus) {
+-                pynode_console.focus()
+-            }
+-            return false;
+-        }
+-
+-        window.onbeforeunload = function () {
+-            if (pynode_output !== undefined) {
+-                pynode_output.close();
+-            }
+-            if (pynode_editor !== undefined) {
+-                pynode_editor.close();
+-            }
+-            if (pynode_console !== undefined) {
+-                pynode_console.close();
+-            }
+-            if (editor_exists) {
+-                saveCode();
+-            }
+-        }
+-    </script>
+-    <script>
+-        var read_storage = true;
+-        var project_src;
+-
+-        const searchParams = new URLSearchParams(window.location.search);
+-
+-        if (searchParams.get("project")) {
+-            project_name = pair[1];
+-            read_storage = false;
+-            var client = new XMLHttpRequest();
+-            client.open("GET", "pynode_projects/" + project_name + ".py");
+-            client.onreadystatechange = function () {
+-                if (client.readyState == 4) {
+-                    project_src = client.responseText;
+-                    if (editor_exists) {
+-                        editor.setValue(project_src, -1);
+-                    }
+-                }
+-                else {
+-                    read_storage = true;
+-                    if (editor_exists) {
+-                        loadCode()
+-                    }
+-                }
+-            };
+-            client.send();
+-        } else if (searchParams.get("gist")) {
+-
+-            read_storage = false;
+-
+-            // Get the gist id from the url search params
+-            const gist_slug = searchParams.get("gist");
+-
+-            console.log("Gist parameter found, value: " + gist_slug);
+-
+-            // localStorage.setItem("code", "");
+-
+-            // Should be in the form username-gistid
+-            // e.g. jdoe-83efe8c19b9dd6489167e67464030d04
+-            if (gist_slug.includes("-") && gist_slug.split("-")[1].length === 32) {
+-
+-                console.log("Gist slug seems to be valid, fetching...");
+-
+-                // Fetch the raw content of the gist
+-                fetch(`https://gist.githubusercontent.com/${gist_slug.replace("-", "/")}/raw`).then(r => {
+-
+-                    console.log("Response status: " + r.status);
+-
+-                    if (r.status == 200) {
+-                        // localStorage.setItem("code", "");
+-                        return r.text()
+-                    } else {
+-                        read_storage = true;
+-                        if (editor_exists) {
+-                            loadCode("# Couldn't load gist  (http != 200).\n# Please try again later.\n\n")
+-                        }
+-                        return null;
+-                    }
+-
+-                }).then(t => {
+-                    if (t) {
+-
+-                        console.log("Gist content fetched, setting code...");
+-
+-                        // Add a small prefix to inform the user whether the gist was loaded from the server or from local storage
+-                        editor_text = `# Content loaded from Github gist on ${new Date().toLocaleString()}\n# https://gist.github.com/${gist_slug.replace("-", "/")}\n\n${t}`;
+-
+-                        console.log(editor_text);
+-
+-                        if (editor_exists) {
+-                            editor.setValue(editor_text, -1);
+-                            saveCode();
+-                        } else {
+-
+-                            console.log("The editor hasn't loaded yet. Retrying every second.");
+-
+-                            window.loadInGistInterval = setInterval(() => {
+-                                if (editor_exists) {
+-                                    console.log("The editor loaded, setting code...");
+-                                    editor.setValue(editor_text, -1);
+-                                    saveCode();
+-                                    clearInterval(window.loadInGistInterval);
+-                                } else {
+-                                    console.log("The editor hasn't loaded yet.");
+-                                }
+-                            }, 100);
+-
+-                        }
+-                    }
+-                }).catch(e => {
+-
+-                    read_storage = true;
+-                    if (editor_exists) {
+-                        loadCode("# Couldn't load gist (fetch error).\n# Please try again later.\n\n")
+-                    }
+-
+-                });
+-
+-            } else {
+-                read_storage = true;
+-                if (editor_exists) {
+-                    loadCode("# Couldn't load gist (invalid gist slug).\n# Please try again later.\n\n")
+-                }
+-            }
+-
+-        }
+-
+-        // var url = window.location.href;
+-        // var newUrl = url.substring(url.lastIndexOf('/') + 1).split("?")[0];
+-        // window.history.pushState("object or string", "Title", "" + newUrl);
+-
+-        function loadGistFromUrl() {
+-
+-            const url = document.getElementById("gisturl").value;
+-            const slug = url.replace("https://gist.github.com/", "").replace("/", "-");
+-
+-            const newUrl = `${location.href.replace(window.location.search,"")}?gist=${slug}`;
+-            window.location.href = newUrl;
+-
+-        }
+-
+-    </script>
++    <script src="js/pynode_globals.js"></script>
++    <script src="js/popups.js"></script>
++    <script src="js/gist_loader.js"></script>
++    <script src="js/markdown-it.min.js"></script>
++    <script src="js/documentation.js"></script>
+ </head>
+ 
+ <body class="pynode" onload="resize();brython({debug:1})" onresize="resize()">
+ <div class="pynodeContainer">
+     <div class="pageWholeWrapper">
+-        <div class="pageTopWrapper">
+-            <div class="pageTop">
+-                <div class="pynodeLogo"><img src="images/logo.png" width="120" height="120"></div>
+-                <div class="pynodeTitle">PyNode-NG</div>
+-                <div class="pynodeSubtitle">
+-                    <h3>Graph Theory Visualizer, Modified to VCE Algorithmics 3/4 specifications</h3>
+-                </div>
+-                <div class="pynodeAuthorSubtitle">
+-                    <h5>By <a href="https://github.com/alexsocha">Alex Socha</a></h5>
+-                    <h5>Modified By <a href="https://github.com/jan0014">Ashwin Janarthanan</a></h5>
+-                </div>
+-                <div class="pynodeDescription">
+-                    <p>PyNode allows you to create, animate and display graphs with a simple Python interface, all
+-                        within your browser.<br>Try the examples below, or write your own!</p>
+-                    <ul>
+-                        <li>
+-                            <p><a href="#" onclick="openCode('dijkstra'); return false;">Dijkstra's Algorithm</a></p>
+-                        </li>
+-                        <li>
+-                            <p><a href="#" onclick="openCode('cannibals'); return false;">Cannibals and Missionaries</a>
+-                            </p>
+-                        </li>
+-                        <li>
+-                            <p><a href="#" onclick="openCode('prims'); return false;">Prim's Algorithm</a></p>
+-                        </li>
+-                        <li>
+-                            <p><a href="#" onclick="openCode('dfs'); return false;">Depth First Search Algorithm</a></p>
+-                        </li>
+-                        <li>
+-                            <p><a href="#" onclick="openCode('tictactoe'); return false;">Tic Tac Toe</a></p>
+-                        </li>
+-                        <li>
+-                            <p>
+-                                Import Github Gist (<a href="#gisthelp">info and help</a>) :  <input type="url" id="gisturl" placeholder="https://gist.github.com/username/83efe8c19b9dd6489167e67464030d04" /> <button onclick="loadGistFromUrl()">Load</button>
+-                            </p>
+-                        </li>
+-                    </ul>
++    <div class="global-bar" id="globalBar">
++      <div class="gb-left">
++        <span class="gb-brand">PyNode-NG</span>
++      </div>
++      <div class="gb-left">
++        <span class="gb-cc">Built by Alex Socha, modified by Ashwin Janarthanan</span>
++      </div>
++
++      <div class="gb-center">
++
++      </div>
++      <div class="gb-right">
++        <select id="examplesSelect" class="gb-select" onchange="gbLoadExample(this)">
++          <option value="" disabled selected>Examples</option>
++          <option value="dijkstra">Dijkstra's Algorithm</option>
++          <option value="prims">Prim's MST</option>
++          <option value="dfs">Depth First Search</option>
++          <option value="cannibals">Cannibals &amp; Missionaries</option>
++          <option value="tictactoe">Tic Tac Toe</option>
++          <option value="greek_islands">Greek Islands</option>
++        </select>
++        <button class="gb-btn" id="docsBtn" onclick="gbToggleOverlay('docsOverlay', this)">Docs</button>
++        <button class="gb-btn" id="aboutBtn" onclick="gbToggleOverlay('aboutOverlay', this)">About</button>
++      </div>
++    </div>
+ 
+-                    <br>
+-                    <p>Note: You can now use <a href="https://github.com/algrx/algorithmx">AlgorithmX</a> to create even better network visualizations!</p>
+-                </div>
+-            </div>
++    <div class="gb-overlay-backdrop" id="docsOverlay" onclick="gbCloseOverlay('docsOverlay', document.getElementById('docsBtn'))">
++      <div class="gb-overlay-panel" onclick="event.stopPropagation()">
++        <div class="gb-overlay-header">
++          <span class="gb-overlay-title">Documentation</span>
++          <button class="gb-overlay-close" onclick="gbCloseOverlay('docsOverlay', document.getElementById('docsBtn'))">✕</button>
++        </div>
++        <div class="gb-overlay-body" id="docsOverlayBody"></div>
++      </div>
++    </div>
++
++    <div class="gb-overlay-backdrop" id="aboutOverlay" onclick="gbCloseOverlay('aboutOverlay', document.getElementById('aboutBtn'))">
++      <div class="gb-overlay-panel" onclick="event.stopPropagation()">
++        <div class="gb-overlay-header">
++          <span class="gb-overlay-title">About</span>
++          <button class="gb-overlay-close" onclick="gbCloseOverlay('aboutOverlay', document.getElementById('aboutBtn'))">✕</button>
+         </div>
++        <div class="gb-overlay-body" id="aboutOverlayBody">
++          <p>Pynode-NG is a fork of PyNode(by Alex Socha) to make it up to par with <a href="https://snapapps.github.io/edgy/app/edgy.html">edgy.</a></p>
++        </div>
++      </div>
++    </div>
+         <div class="appWrapper" id="appWrapper">
+             <div class="appContainer" id="appContainer">
+                 <div class="appLeft">
+@@ -277,7 +94,7 @@
+                                         src="images/controls/save.png" width="16" height="16"></a></h3></div>
+                                 <div class="appSectionBarIcon">
+                                     <h3>
+-                                        <a href="" onclick="toggleVimMode(); return false;" id="vimToggleBtn" 
++                                        <a href="" onclick="toggleVimMode(); return false;" id="vimToggleBtn"
+                                             style="font-size:11px; font-family:monospace; opacity:0.4; text-decoration:none;">
+                                         VIM
+                                         </a>
+@@ -307,48 +124,38 @@
+                         <div class="editorButtonBar">
+                             <div id="run" class="editorButton">
+                                 <div id="runPlay">
+-                                    <div class="editorButtonIcon"><img src="images/controls/play.png" width="20"
+-                                                                       height="20"></div>
++                                    <div class="editorButtonIcon"><img src="images/controls/play.png" width="20" height="20"></div>
+                                     <h4>PLAY</h4>
+                                 </div>
+                                 <div id="runPlayLoad">
+-                                    <div class="editorButtonIcon"><img src="images/controls/loading.png"
+-                                                                       width="20" height="20"></div>
++                                    <div class="editorButtonIcon"><img src="images/controls/loading.png" width="20" height="20"></div>
+                                     <h4>LOADING</h4>
+                                 </div>
+                                 <div id="runPause">
+-                                    <div class="editorButtonIcon"><img src="images/controls/pause.png" width="20"
+-                                                                       height="20"></div>
++                                    <div class="editorButtonIcon"><img src="images/controls/pause.png" width="20" height="20"></div>
+                                     <h4>PAUSE</h4>
+                                 </div>
+                                 <div id="runResume">
+-                                    <div class="editorButtonIcon"><img src="images/controls/play.png" width="20"
+-                                                                       height="20"></div>
++                                    <div class="editorButtonIcon"><img src="images/controls/play.png" width="20" height="20"></div>
+                                     <h4>RESUME</h4>
+                                 </div>
+                             </div>
+                             <div id="stop" class="editorButton">
+-                                <div class="editorButtonIcon"><img src="images/controls/stop.png" width="20"
+-                                                                   height="20"></div>
++                                <div class="editorButtonIcon"><img src="images/controls/stop.png" width="20" height="20"></div>
+                                 <h4>STOP</h4>
+                             </div>
+                             <div id="restart" class="editorButton">
+-                                <div class="editorButtonIcon"><img src="images/controls/restart.png" width="20"
+-                                                                   height="20"></div>
++                                <div class="editorButtonIcon"><img src="images/controls/restart.png" width="20" height="20"></div>
+                                 <h4>RESTART</h4>
+                             </div>
+                             <div class="buttonBarLayoutPanel">
+                                 <div id="layout1">
+-                                    <div id="layout1On" class="layoutButtonOn" style="display: inherit"><img
+-                                            src="images/controls/layoutButton1.png" width="20" height="20"></div>
+-                                    <div id="layout1Off" class="layoutButtonOff" style="display: none"><img
+-                                            src="images/controls/layoutButton1.png" width="20" height="20"></div>
++                                    <div id="layout1On" class="layoutButtonOn" style="display: inherit"><img src="images/controls/layoutButton1.png" width="20" height="20"></div>
++                                    <div id="layout1Off" class="layoutButtonOff" style="display: none"><img src="images/controls/layoutButton1.png" width="20" height="20"></div>
+                                 </div>
+                                 <div id="layout2">
+-                                    <div id="layout2On" class="layoutButtonOn" style="display: none"><img
+-                                            src="images/controls/layoutButton2.png" width="20" height="20"></div>
+-                                    <div id="layout2Off" class="layoutButtonOff" style="display: inherit"><img
+-                                            src="images/controls/layoutButton2.png" width="20" height="20"></div>
++                                    <div id="layout2On" class="layoutButtonOn" style="display: none"><img src="images/controls/layoutButton2.png" width="20" height="20"></div>
++                                    <div id="layout2Off" class="layoutButtonOff" style="display: inherit"><img src="images/controls/layoutButton2.png" width="20" height="20"></div>
+                                 </div>
+                             </div>
+                         </div>
+@@ -372,596 +179,34 @@
+             </div>
+         </div>
+         <script> resize(); </script>
+-        <div class="pageBottomWrapper">
++        <div class="pageBottomWrapper" style="display:none;" aria-hidden="true">
++            <div class="pageWhole" id="docus"></div>
+             <div class="pageWhole">
+-                <h1>Documentation</h1>
+-                <h4>&nbsp;</h4>
+-                <h2>Graph</h2>
+-                <ul>
+-                    <li>
+-                        <p><code>graph.add_node(node)</code> - Adds a node to the graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.add_node(id=None, value=id)</code> - Creates a <code class="codeInline">Node(id,
+-                            value)</code> and adds it to the graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.remove_node(node)</code> - Removes a node from the graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.node(id)</code> - Returns a node in the graph by its <code
+-                                class="codeInline">id</code>.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.nodes()</code> - Returns a list of all nodes in the graph.</p>
+-                    </li>
+-                    <p>&nbsp;</p>
+-                    <li>
+-                        <p><code>graph.add_edge(edge)</code> - Adds an edge to the graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.add_edge(source, target, weight=None, directed=False)</code> - Creates an <code
+-                                class="codeInline">Edge(source, target, weight, directed)</code> and adds it to the
+-                            graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.remove_edge(edge)</code> - Removes an edge from the graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.remove_edge(node1, node2, directed=False)</code> - Removes edge(s) between <code
+-                                class="codeInline">node1</code> and <code class="codeInline">node2</code>. If <code
+-                                class="codeInline">directed</code> is set, only edges beginning at <code
+-                                class="codeInline">node1</code> will be removed.</p>
+-                    </li>
+-                    <p>&nbsp;</p>
+-                    <li>
+-                        <p><code>graph.has_node(node)</code> - Checks whether a node has been added to the graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.has_edge(edge)</code> - Checks whether an edge has been added to the graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.adjacent(node1, node2, directed=False)</code> - Checks whether an edge exists
+-                            between <code class="codeInline">node1</code> and <code class="codeInline">node2</code>. If
+-                            <code class="codeInline">directed</code> is set, the edge must begin at <code
+-                                    class="codeInline">node1</code>.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.edges_between(node1, node2, directed=False)</code> - Returns a list of all edges
+-                            between <code class="codeInline">node1</code> and <code class="codeInline">node2</code>. If
+-                            <code class="codeInline">directed</code> is set, only edges beginning at <code
+-                                    class="codeInline">node1</code> will be included.</p>
+-                    </li>
+-                    <p>&nbsp;</p>
+-                    <li>
+-                        <p><code>graph.set_directed(directed=True)</code> - Sets whether all edges in the graph are
+-                            directed.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.adjacency_matrix()</code> - Creates and returns an adjacency matrix
+-                            (2-dimensional dictionary, using node <code class="codeInline">id</code> values as keys) for
+-                            the graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.add_all(elements)</code> - Adds a list of <code class="codeInline">Node</code>
+-                            and/or <code class="codeInline">Edge</code> elements to the graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.remove_all(elements)</code> - Removes a list of <code
+-                                class="codeInline">Node</code> and/or <code class="codeInline">Edge</code> elements from
+-                            the graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.random(order, size, connected=True, multigraph=False, initial_id=0)</code> -
+-                            Returns a list of randomly connected nodes and edges, with <code
+-                                    class="codeInline">order</code> specifying the amount of nodes and <code
+-                                    class="codeInline">size</code> specifying the amount of edges. If <code
+-                                    class="codeInline">connected</code> is set, a path will exist between any pair of
+-                            nodes (unless the amount of edges makes this impossible). If <code class="codeInline">multigraph</code>
+-                            is set, a pair of nodes may be connected by multiple edges. Nodes are assigned incremental
+-                            <code class="codeInline">id</code> values starting at <code
+-                                    class="codeInline">initial_id</code>.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.order()</code>, <code>graph.size()</code> - Returns the number of nodes/edges in
+-                            the graph.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.is_connected() -> Boolean</code> - Checks if the graph is connected.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.is_cyclic() -> Boolean</code> - Checks if the graph contain cycle.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>graph.is_empty() -> Boolean</code> - Checks if the graph is empty.</p>
+-                    </li>
+-                    <!--<li>
+-                      <p><code>graph.set_spread(spread=80)</code> - Sets the visual sparseness of the graph (i.e. the minimum edge length).</p>
+-                    </li>-->
+-                    <li>
+-                        <p><code>graph.clear()</code> - Deletes all nodes and edges from the graph.</p>
+-                    </li>
+-                </ul>
+-                <p>Note: All functions containing node parameters accept either a <code class="codeInline">Node</code>
+-                    instance or node <code class="codeInline">id</code> value.</p>
+-                <h2>&nbsp;</h2>
+-                <h2>Node</h2>
+-                <ul>
+-                    <li>
+-                        <p><code>Node(id=None, value=id)</code> - Creates a node with the specified <code
+-                                class="codeInline">id</code> and <code class="codeInline">value</code>. Assigns a unique
+-                            <code class="codeInline">id</code> integer if the specified <code
+-                                    class="codeInline">id</code> is <code class="codeInline">None</code>.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.id()</code> - Returns the <code class="codeInline">id</code> of the node.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.set_value()</code>, <code>node.value()</code> - Sets/gets the <code
+-                                class="codeInline">value</code> of the node.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.incident_edges()</code>, <code>node.incoming_edges()</code>, <code>node.outgoing_edges()</code>
+-                            - Returns a list of the node's incident/incoming/outgoing edges.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.adjacent_nodes()</code>, <code>node.predecessor_nodes()</code>, <code>node.successor_nodes()</code>
+-                            - Returns a list of the node's adjacent/predecessor/successor nodes.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.degree()</code>, <code>node.indegree()</code>, <code>node.outdegree()</code> -
+-                            Returns the node's degree/indegree/ outdegree.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.set_attribute(name, value)</code>, <code>node.attribute(name)</code> - Sets/gets
+-                            custom attributes for the node.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.set_priority(value)</code>, <code>node.priority(name)</code> - Sets/gets a
+-                            priority value used for comparison.</p>
+-                    </li>
+-                    <p>&nbsp;</p>
+-                    <li>
+-                        <p><code>node.set_position(x, y, relative=False)</code> - Sets the static position of the node.
+-                            <code class="codeInline">x</code> and <code class="codeInline">y</code> are pixel
+-                            coordinates, with (0, 0) being
+-                            the top-left corner of the output window (the standard size of the window is 500x400). If
+-                            <code class="codeInline">relative</code> is
+-                            set, <code class="codeInline">x</code> and <code class="codeInline">y</code> should instead
+-                            be values between 0.0 and 1.0, specifying the node's position as a percentage of the
+-                            window size.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.position()</code> - Returns a tuple with the (x, y) coordinates of the node.
+-                            Should be used in asynchronous function calls.
+-                    </li>
+-                    <li>
+-                        <p><code>node.set_label(value, label_id=0)</code>, <code>node.label(label_id)</code> - Sets/gets
+-                            the value of additional labels for the node (Use <code class="codeInline">label_id=0</code>
+-                            for the top-right label and <code class="codeInline">label_id=1</code> for the top
+-                            left-label).</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.set_size(size=12)</code>, <code>node.size()</code> - Sets/gets the radius of the
+-                            node.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.set_color(color=Color.DARK_GREY)</code>, <code>node.color()</code> - Sets/gets the
+-                            color of the node.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.set_value_style(size=13, color=Color.WHITE, outline=None)</code> - Sets the
+-                            appearance of the node's value text (if no <code class="codeInline">outline</code> is
+-                            specified,
+-                            the node's background color will be used for the outline).</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.set_label_style(size=10, color=Color.GREY, outline=None, lable_id=None)</code> -
+-                            Sets the appearance of the node's label text (if no <code class="codeInline">lable_id</code>
+-                            is specified, both labels will be affected).</p>
+-                    </li>
+-                    <li>
+-                        <p><code>node.highlight(color=node.color(), size=node.size()*1.5)</code> - Performs a highlight
+-                            animation by temporarily changing the size and color of the node.</p>
+-                    </li>
+-                    <li>
+-                      <p><code>node.incoming_nodes()-> [node]</code> - Get a list of incoming nodes</p>
+-                    </li>
+-                    <li>
+-                      <p><code>node.outgoing_nodes()-> [node]</code> - Get a list of outgoing nodes</p>
+-                    </li>
+-
+-                </ul>
+-                <p>&nbsp;</p>
+-                <h2>Edge</h2>
+-                <ul>
+-                    <li>
+-                        <p><code>Edge(source, target, weight=None, directed=False)</code> - Creates an edge between the
+-                            specified <code class="codeInline">source</code> and <code class="codeInline">target</code>
+-                            nodes, with optional <code class="codeInline">weight</code> and <code class="codeInline">directed</code>
+-                            properties.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>edge.source()</code>, <code>edge.target()</code> - Returns the edge's source/target
+-                            nodes.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>edge.set_weight(weight=None)</code>, <code>edge.weight()</code> - Sets/gets the weight
+-                            of the edge.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>edge.set_directed(directed=True)</code>, <code>edge.directed()</code> - Sets/gets
+-                            whether the edge is directed.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>edge.other_node(node)</code> - Returns a node connected by the edge, other than the
+-                            node specified.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>edge.set_attribute(name, value)</code>, <code>edge.attribute(name)</code> - Sets/gets
+-                            custom attributes for the edge.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>edge.set_priority(value)</code>, <code>edge.priority(name)</code> - Sets/gets a
+-                            priority value used for comparison.</p>
+-                    </li>
+-                    <p>&nbsp;</p>
+-                    <li>
+-                        <p><code>edge.set_width(width=2)</code>, <code>edge.width()</code> - Sets/gets the width of the
+-                            edge.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>edge.set_color(color=Color.LIGHT_GREY)</code>, <code>edge.color()</code> - Sets/gets
+-                            the color of the edge.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>edge.set_weight_style(size=10, color=Color.GREY, outline=None)</code> - Sets the
+-                            appearance of the edge's weight text.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>edge.highlight(color=edge.color(), width=edge.width()*2)</code> - Performs a highlight
+-                            animation by temporarily changing the width and color of the edge.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>edge.traverse(initial_node=edge.source(), color=Color.RED, keep_path=True)</code> -
+-                            Performs a traversal animation on the edge, beginning at <code class="codeInline">initial_node</code>
+-                            and using the specified <code class="codeInline">color</code>. If <code class="codeInline">keep_path</code>
+-                            is set, the edge will remain colored.</p>
+-                    </li>
+-                </ul>
+-                <p>&nbsp;</p>
+-                <h2>Miscellaneous</h2>
+-                <ul>
+-                    <li>
+-                        <p><code>Color(red, green, blue)</code> - Custom color for use in node and edge animations,
+-                            using 0-255 values for each component.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>Color.RED</code>, <code>Color.GREEN</code>, <code>Color.BLUE</code>,
+-                            <code>Color.YELLOW</code>, <code>Color.WHITE</code>, <code>Color.LIGHT_GREY</code>, <code>Color.GREY</code>,
+-                            <code>Color.DARK_GREY</code>, <code>Color.BLACK</code>, <code>Color.TRANSPARENT</code> -
+-                            Predefined colors for use in node and edge animations.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>pause(time)</code> - Delays the next visual event for the specified number of
+-                            milliseconds (note that this does not pause code execution).</p>
+-                    </li>
+-                    <li>
+-                        <p><code>delay(func, time, args=[], repeat=False)</code> - Executes a function after the
+-                            specified number of milliseconds, with the optional <code class="codeInline">args</code>
+-                            list of parameters. If <code class="codeInline">repeat</code> is set, the function will
+-                            execute
+-                            continuously until the delay is cancelled. Returns a <code
+-                                    class="codeInline">delay_id</code> integer referencing the delay.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>cancel_delay(delay_id)</code> - Cancels a scheduled delay event.</p>
+-                    </li>
+-                    <li>
+-                        <p><code>register_click_listener(func)</code> - Registers a function which will be called
+-                            whenever a node is clicked. The function must include a <code class="codeInline">node</code>
+-                            parameter (e.g. <code class="codeInline">def on_click(node)</code>), which will receive the
+-                            instance of the clicked node.</p>
+-                    </li>
+-                </ul>
+-
+-                <p>&nbsp;</p>
+-
+-                <h2 id="gisthelp">Publishing via Github Gists</h2>
+-                <br/>
+-                <p>
+-                    You can load a PyNode script from Github's gists service. Gists are snippets of text or files that are public and stored on Github.
+-                    They are useful for sharing small files with people. PyNode can load your script from a Gist so that you can just send somebody a link to show them a graph.
+-                </p>
+-
+-                <br/>
+-
+-                <p>
+-                    Below are instructions for uploading your PyNode script to Github and then using it.
+-                </p>
+-
+-                <p>
+-                    <ol>
+-                        <li>
+-                            Create a new Gist. If you have a Github account, <a href="https://gist.new" target="_blank">click here</a> to create a new Gist. If not, <a href=""https://github.com/join?return_to=https://gist.github.com/new&source=header-gist" target="_blank">click here</a> to sign up and create one.
+-                        </li>
+-
+-                        <li>
+-                            Paste your PyNode script here and press the "Save" button.
+-                        </li>
+-
+-                        <li>
+-                            Copy the URL of the page that you are taken to after you save your Gist.
+-                        </li>
+-
+-                        <li>
+-                            Enter the URL on the PyNode homepage and click 'Load'
+-                        </li>
+-
+-                        <li>
+-                            You should be taken to a page that shows the graph that you just created.
+-                        </li>
+-                    </ol>
+-                </p>
+-
+-                <p>
+-                    <b>Note</b>: This is not a two-way sync. If you edit the script in PyNode, the Gist will not be updated. You will need to update it within Github. Gists are more for publishing your script over saving it.
+-                </p>
+-
+-            </div>
+-            <div class="pageWhole" id="download">
+-                <h1>Download</h1>
+-                <p>&nbsp;</p>
+-                <p>Download the offline version of PyNode below.</p>
+-                <p>&nbsp;</p>
+-                <p>&nbsp;</p>
+-                <div class="pynodeDownloadBox">
+-                    <div class="pynodeDownloadBoxIcon"><img src="images/download/windows.svg" width="45"
+-                                                            height="45"></div>
+-                    <div class="pynodeDownloadBoxTextWin">
+-                        <a href="offline_downloads/pynode_win64.zip">Download PyNode for Windows 64-bit</a>
+-                        <p class="pageTextGap">&nbsp</p>
+-                        <a href="offline_downloads/pynode_win32.zip">Download PyNode for Windows 32-bit</a>
+-                    </div>
+-                </div>
+-                <div class="pynodeDownloadBox">
+-                    <div class="pynodeDownloadBoxIcon"><img src="images/download/mac.svg" width="45" height="45">
+-                    </div>
+-                    <div class="pynodeDownloadBoxTextMac">
+-                        <a href="offline_downloads/pynode_macosx.zip">Download PyNode for macOS</a>
+-                    </div>
+-                </div>
+-                <div class="pynodeDownloadBoxLinux">
+-                    <div class="pynodeDownloadBoxIconLinux"><img src="images/download/linux.svg" width="70"
+-                                                                 height="70">
+-                    </div>
+-                    <div class="pynodeDownloadBoxTextLinux">
+-                        <a href="offline_downloads/pynode_linux.zip">Download PyNode for Linux</a>
+-                    </div>
+-                </div>
+-                <p>&nbsp;</p>
+-                <p>Once downloaded, unzip the archive and run demo.py.</p>
+-            </div>
+-            <div class="pageWhole">
+-                <h1>About</h1>
+-                <p>&nbsp;</p>
+-                <p>PyNode was designed and created by <a href="https://github.com/alexsocha">Alex Socha</a>, using the following technologies:</p>
+-                <ul>
+-                    <li>
+-                        <p><a href="http://marvl.infotech.monash.edu/webcola/">WebCola</a> - Monash Adaptive
+-                            Visualization Lab (<a href="https://github.com/tgdwyer/WebCola">GitHub</a>)</p>
+-                    </li>
+-                    <li>
+-                        <p><a href="https://d3js.org/" target="_blank">D3.js</a> - Mike Bostock (<a
+-                                href="https://github.com/d3/d3">GitHub</a>)</p>
+-                    </li>
+-                    <li>
+-                        <p><a href="https://maurizzzio.github.io/greuler/#/" target="_blank">greuler</a> - Mauricio
+-                            Poppe (<a href="https://github.com/maurizzzio/greuler/">GitHub</a>)</p>
+-                    </li>
+-                    <li>
+-                        <p><a href="https://brython.info/" target="_blank">Brython</a> - Kiko Correoso (<a
+-                                href="https://github.com/brython-dev/brython">GitHub</a>)</p>
+-                    </li>
+-                    <li>
+-                        <p><a href="https://ace.c9.io/#nav=about" target="_blank">ace</a> - Ajax.org (<a
+-                                href="https://github.com/ajaxorg/ace">GitHub</a>)</p>
+-                    </li>
+-                </ul>
++               </ul>
+             </div>
+         </div>
+     </div>
+ </div>
++
+ <script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+ <script src="js/ace/mode-python.js" type="text/javascript" charset="utf-8"></script>
+ <script src="js/ace/ext-language-tools.js" type="text/javascript" charset="utf-8"></script>
+-<script>
+-    resize();
+-    ace.require("ace/ext/language_tools");
+-    var editor = ace.edit("editor", {
+-      enableBasicAutocompletion: true,
+-      enableLiveAutocompletion: true,
+-      mode: "ace/mode/python"
+-    });
+-    editor.$blockScrolling = Infinity;
+-    editor_exists = true;
+-  
+-    editor.setTheme("ace/theme/tomorrow_night");
+-
+-    function getCode() {
+-        return editor.getValue();
+-    }
+-
+-    function setCode(src) {
+-        if (enable_editor) {
+-            editor.setValue(src, -1);
+-        }
+-    }
+-
+-    function saveCode() {
+-        localStorage.setItem("code", getCode())
+-    }
+-
+-    function loadCode(prefix) {
+-        src = localStorage.getItem("code");
+-        if (src === null || src == "") {
+-            openCode("dijkstra", prefix);
+-        }
+-
+-        if (prefix) {
+-            src = prefix + src;
+-        }
+-
+-        else {
+-            editor.setValue(src, -1);
+-        }
+-    }
+-
+-    function openCode(name, prefix) {
+-        var client = new XMLHttpRequest();
+-        client.open("GET", "pynode_projects/" + name + ".py");
+-        client.onreadystatechange = function () {
+-            if (client.readyState == 4) {
+-                if (editor_exists) {
+-                    editor.setValue((prefix || "") + client.responseText, -1);
+-                    saveCode();
+-                }
+-            }
+-        };
+-        client.send();
+-    }
+-
+-    if (read_storage) {
+-        loadCode();
+-    }
+-
+-    if (project_src !== undefined) {
+-        editor.setValue(project_src, -1);
+-    }
+-    var PythonMode = ace.require("ace/mode/python").Mode;
+-    editor.session.setMode(new PythonMode());
+-    ace.require("ace/ext/language_tools");
+-    editor.setOptions({
+-        fontSize: "11pt",
+-        enableBasicAutocompletion: true
+-    });
+-
+-    editor.on("change", function () {
+-        if (pynode_editor !== undefined) {
+-            enable_editor = false;
+-            if (pynode_editor.enable_editor) pynode_editor.setCode(editor.getValue());
+-            enable_editor = true;
+-        }
+-    });
+-
+-    document.getElementById("editorBox").style.visibility = "visible";
+-</script>
+-<script>
+-    function writeOutput(data, append) {
+-        if (append) document.getElementById("console").innerHTML += data;
+-        else document.getElementById("console").innerHTML = data;
+-        if (pynode_output === undefined && pynode_console !== undefined) pynode_console.writeOutput(data, append);
+-    }
++<script src="js/editor.js"></script>
+ 
+-</script>
++<script src="js/output.js"></script>
+ 
+ <input id="file-input" type="file" name="name" style="display: none;"/>
+ <script type="text/javascript" src="js/filesaver/filesaver.min.js?version=0.9.2"></script>
+-<script>
+-    function userLoadCode(event) {
+-        var files = event.target.files;
+-        var file = null;
+-        if (files.length > 0) file = files[0];
+-        else return;
+-        var reader = new FileReader();
+-        reader.onload = (function (theFile) {
+-            return function (e) {
+-                setCode(e.target.result);
+-            };
+-        })(file);
+-        reader.readAsText(file);
+-    }
+-
+-    function userSaveCode() {
+-        var text = getCode();
+-        var blob = new Blob([text], {type: "text/plain;charset=utf-8;"});
+-        saveAs(blob, "project.pynode");
+-    }
+-    
+-    var vimEnabled = false;
+-    var vimLoaded  = false;
+-
+-    function toggleVimMode() {
+-        vimEnabled = !vimEnabled;
+-        var btn = document.getElementById('vimToggleBtn');
++<script src="js/file_io.js"></script>
+ 
+-        if (vimEnabled) {
+-            editor.setKeyboardHandler('ace/keyboard/vim');
+-            if (!vimLoaded) {
+-            ace.config.loadModule('ace/keyboard/vim', function(module) {
+-                module.CodeMirror.Vim.map('jk', '<Esc>', 'insert');
+-                vimLoaded = true;
+-            });
+-            }
+-            btn.style.opacity = '1';
+-            btn.title = 'Vim mode ON';
+-        } else {
+-            editor.setKeyboardHandler(null);
+-            btn.style.opacity = '0.4';
+-            btn.title = 'Vim mode OFF';
+-        }
+-    }
++<script type="text/javascript" src="js/greuler_init.js"></script>
+ 
+-    document.getElementById('file-input').addEventListener('change', userLoadCode, false);
+-</script>
+-<script type="text/javascript">
+-    greuler_instance = greuler({
+-        target: '#output',
+-        width: 500,
+-        height: 400
+-    });
+-</script>
+ <script type="text/javascript" src="js/brython/brython.js?version=0.9.7"></script>
+ <script type="text/javascript" src="js/brython/brython_stdlib.js?version=0.9.7"></script>
+-<script type="text/python3" id="tests_editor">
+-	import pynode_core
+-	from browser import window, document, alert
+-
+-	document["run"].bind("click", pynode_core.save_code)
+-	document["run"].bind("click", pynode_core.button_play)
+-	document["stop"].bind("click", pynode_core.button_stop)
+-	document["restart"].bind("click", pynode_core.button_restart)
+-</script>
+-<script>
+-    document.getElementById("run").style.backgroundColor = "#6E6E6E";
+-    document.getElementById("stop").style.backgroundColor = "#6E6E6E";
+-    document.getElementById("restart").style.backgroundColor = "#6E6E6E";
+-    document.getElementById("run").style.cursor = "pointer";
+-    document.getElementById("stop").style.cursor = "pointer";
+-    document.getElementById("restart").style.cursor = "pointer";
+-    writeOutput("<p class='console-code' style='color:green;'>Done!</p>", true);
++<script type="text/python3" src="pynode_init.py" id="tests_editor"></script>
+ 
+-    document.getElementById("layout1").onclick = function () {
+-        if (document.getElementById("layout1On").style.display === "none") {
+-            document.getElementById("layout1On").style.display = "inherit";
+-            document.getElementById("layout1Off").style.display = "none";
+-            document.getElementById("layout2On").style.display = "none";
+-            document.getElementById("layout2Off").style.display = "inherit";
+-            set_layout_type()
+-        }
+-    };
+-    document.getElementById("layout2").onclick = function () {
+-        if (document.getElementById("layout2On").style.display === "none") {
+-            document.getElementById("layout2On").style.display = "inherit";
+-            document.getElementById("layout2Off").style.display = "none";
+-            document.getElementById("layout1On").style.display = "none";
+-            document.getElementById("layout1Off").style.display = "inherit";
+-            set_layout_type()
+-        }
+-    };
+-</script>
++<script src="js/ui_init.js"></script>
+ 
+-<!-- Relevant links that are not directly referenced. Allows website to be properly read with automatic web crawling. -->
+ <a hidden style="display:none" href="pynode_core.py">&nbsp</a>
+ <a hidden style="display:none" href="pynode_graphlib.py">&nbsp</a>
+ <a hidden style="display:none" href="pynode_projects/cannibals.py">&nbsp</a>
+@@ -970,8 +215,60 @@
+ <a hidden style="display:none" href="pynode_projects/greek_islands.py">&nbsp</a>
+ <a hidden style="display:none" href="pynode_projects/prims.py">&nbsp</a>
+ <a hidden style="display:none" href="pynode_projects/tictactoe.py">&nbsp</a>
+-<a hidden style="display:none" href="offline_downloads/latest_src.zip">&nbsp</a>
+ <a hidden style="display:none" href="offline_downloads/latest_version.txt">&nbsp</a>
+ 
++
++<script>
++function gbToggleOverlay(id, btn) {
++    var backdrop = document.getElementById(id);
++    var isOpen = backdrop.classList.contains('gb-overlay-open');
++    document.querySelectorAll('.gb-overlay-backdrop').forEach(function(el) {
++        el.classList.remove('gb-overlay-open');
++    });
++    document.querySelectorAll('.gb-btn').forEach(function(el) {
++        el.classList.remove('gb-active');
++    });
++    if (!isOpen) {
++        if (id === 'docsOverlay') {
++            var src = document.getElementById('docus');
++            if (src) document.getElementById('docsOverlayBody').innerHTML = src.innerHTML;
++        }
++        backdrop.classList.add('gb-overlay-open');
++        if (btn) btn.classList.add('gb-active');
++    }
++}
++function gbCloseOverlay(id, btn) {
++    document.getElementById(id).classList.remove('gb-overlay-open');
++    if (btn) btn.classList.remove('gb-active');
++}
++function gbLoadExample(sel) {
++    var val = sel.value;
++    sel.value = '';
++    if (!val) return;
++    if (typeof openCode === 'function') openCode(val);
++}
++function gbTriggerDownload(sel) {
++    var url = sel.value;
++    sel.value = '';
++    if (!url) return;
++    var a = document.createElement('a');
++    a.href = url;
++    a.download = '';
++    document.body.appendChild(a);
++    a.click();
++    document.body.removeChild(a);
++}
++document.addEventListener('keydown', function(e) {
++    if (e.key === 'Escape') {
++        document.querySelectorAll('.gb-overlay-backdrop').forEach(function(el) {
++            el.classList.remove('gb-overlay-open');
++        });
++        document.querySelectorAll('.gb-btn').forEach(function(el) {
++            el.classList.remove('gb-active');
++        });
++    }
++});
++</script>
++
+ </body>
+ </html>
