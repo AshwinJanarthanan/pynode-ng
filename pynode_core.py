@@ -76,8 +76,8 @@ def format_string_HTML(s):
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", "<br>").replace("\"", "&quot;").replace("'", "&apos;").replace(" ", "&nbsp;")
 
 def do_print(s, color=None):
-    if color is not None: window.writeOutput("<p style='display:inline;color:" + color + ";'>" + format_string_HTML(s) + "</p>", True)
-    else: window.writeOutput("<p style='display:inline;'>" + format_string_HTML(s) + "</p>", True)
+    if color is not None: window.writeOutput("<p class='console-code' style='display:inline;color:" + color + ";'>" + format_string_HTML(s) + "</p>", True)
+    else: window.writeOutput("<p class='console-code' style='display:inline;'>" + format_string_HTML(s) + "</p>", True)
 
 def do_print_formatted(s):
     window.writeOutput(s, True)
@@ -91,7 +91,7 @@ class PrintOutput:
 
 class ErrorOutput:
     def write(self, data):
-        PynodeCoreGlobals.error += "<p style='display:inline;color:red;'>" + format_string_HTML(str(data)) + "</p>"
+        PynodeCoreGlobals.error += "<p class='console-code' style='display:inline;color:red;'>" + format_string_HTML(str(data)) + "</p>"
         #document["console"].innerHTML += "<p style='display:inline;color:red;'>" + format_string_HTML(str(data)) + "</p>"
     def flush(self):
         pass

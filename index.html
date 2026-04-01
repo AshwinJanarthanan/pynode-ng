@@ -785,6 +785,8 @@
     });
     editor.$blockScrolling = Infinity;
     editor_exists = true;
+  
+    editor.setTheme("ace/theme/tomorrow_night");
 
     function getCode() {
         return editor.getValue();
@@ -937,7 +939,7 @@
     document.getElementById("run").style.cursor = "pointer";
     document.getElementById("stop").style.cursor = "pointer";
     document.getElementById("restart").style.cursor = "pointer";
-    writeOutput("<p style='color:green;'>Done!</p>", true);
+    writeOutput("<p class='console-code' style='color:green;'>Done!</p>", true);
 
     document.getElementById("layout1").onclick = function () {
         if (document.getElementById("layout1On").style.display === "none") {
