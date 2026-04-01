@@ -1,604 +1,896 @@
+/* ============================================================
+   PYNODE — TOMORROW NIGHT THEME
+   Base palette by Chris Kempson (chriskempson.com/tomorrow-theme)
+   ============================================================
+
+   Color reference:
+     --tn-bg:       #1d1f21   page / editor background
+     --tn-line:     #282a2e   current line / elevated surface
+     --tn-sel:      #373b41   selection / borders
+     --tn-fg:       #c5c8c6   primary foreground text
+     --tn-comment:  #969896   muted / comment text
+     --tn-red:      #cc6666   errors / tags
+     --tn-orange:   #de935f   numbers / constants
+     --tn-yellow:   #f0c674   types / classes
+     --tn-green:    #b5bd68   strings / success
+     --tn-aqua:     #8abeb7   support / built-ins
+     --tn-blue:     #81a2be   functions / links   ← primary accent
+     --tn-purple:   #b294bb   keywords
+*/
+
 html {
-    font-size: 14px;
+font-size: 14px;
 }
 
 hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #B0B0B0;
-    margin: 1em 0;
-    padding: 0;
+display: block;
+height: 1px;
+border: 0;
+border-top: 1px solid #373b41;
+margin: 1em 0;
+padding: 0;
 }
 
 /* PAGE COLORS
-   ================================================== */
+================================================== */
 
 html, body {
-    color: black;
-    transition: background-color 0.2s ease;
-    font-family: "Arial";
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
-    font-weight: 400;
-    font-style: normal;
-    text-align: left;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #525252;
+color: #c5c8c6;
+transition: background-color 0.2s ease;
+font-family: "Arial";
+-webkit-font-smoothing: antialiased;
+font-smoothing: antialiased;
+font-weight: 400;
+font-style: normal;
+text-align: left;
+height: 100%;
+margin: 0;
+padding: 0;
+background-color: #1d1f21;
 }
 
 /* GENERAL
-   ================================================== */
+================================================== */
 
 body .pynodeContainer {
-    background-color: #ECECEC;
+background-color: #282a2e;
 }
 
 body .footerText {
-    color: #CBCBCB;
+color: #969896;
 }
 
 body .pageInfoWrapper {
-    background-color: #525252;
+background-color: #1d1f21;
 }
 
 /* MAIN TYPE STYLES AND LINKS
-   ================================================== */
+================================================== */
 
 @font-face {
-    font-family: Oswald;
-    src: url('Oswald-Regular.ttf');
+font-family: Oswald;
+src: url('Oswald-Regular.ttf');
 }
 
 h1 {
-    color: black;
-    font: 3.2rem/1.1 'Oswald', 'Arial', sans-serif;
-    margin: 0;
+color: #c5c8c6;
+font: 3.2rem/1.1 'Oswald', 'Arial', sans-serif;
+margin: 0;
 }
 
 h2 {
-    color: black;
-    font: 1.8rem/1.1 'Oswald', 'Arial', sans-serif;
-    margin: 0;
+color: #c5c8c6;
+font: 1.8rem/1.1 'Oswald', 'Arial', sans-serif;
+margin: 0;
 }
 
 h3 {
-    font: 1.4rem/1.1 'Oswald', 'Arial', sans-serif;
-    margin: 0;
+font: 1.4rem/1.1 'Oswald', 'Arial', sans-serif;
+margin: 0;
+color: #c5c8c6;
 }
 
 h4 {
-    font: 1.2rem/1.1 'Oswald', 'Arial', sans-serif;
-    margin: 0;
+font: 1.2rem/1.1 'Oswald', 'Arial', sans-serif;
+margin: 0;
+color: #aeafad;
 }
 
 h5 {
-    font: 1.0rem/1.1 'Oswald', 'Arial', sans-serif;
-    margin: 0;
+font: 1.0rem/1.1 'Oswald', 'Arial', sans-serif;
+margin: 0;
+color: #969896;
 }
 
 p {
-    font: 1.2rem/1.1 Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
-    font-size: 14px;
-    color: black;
-    margin: 0;
+font: 1.2rem/1.1 Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+font-size: 14px;
+color: #c5c8c6;
+margin: 0;
 }
 
 a {
-    text-decoration: none;
-    color: teal;
+text-decoration: none;
+color: #81a2be;
 }
 
 a:hover {
-    text-decoration: none;
+text-decoration: none;
+color: #8abeb7;
 }
 
 a.anchor {
-    display: block;
-    position: relative;
-    top: -150px;
-    visibility: hidden;
+display: block;
+position: relative;
+top: -150px;
+visibility: hidden;
 }
 
 /* FONT STYLES
-   ================================================== */
+================================================== */
 
 .pageTextSmall {
-    margin: 0;
-    font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
-    font-size: 11px;
-    color: black;
+margin: 0;
+font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+font-size: 11px;
+color: #969896;
 }
 
 .pageTextGap {
-    margin: 0;
-    font-size: 5px;
+margin: 0;
+font-size: 5px;
 }
 
 .footerText {
-    margin: 0;
-    font-size: 12px;
+margin: 0;
+font-size: 12px;
 }
 
 /* CONTAINERS
-   ================================================== */
+================================================== */
 
 .pynodeContainer {
-    min-width: 900px;
-    min-height: 100%;
-    position: relative;
-    overflow: hidden;
+min-width: 900px;
+min-height: 100%;
+position: relative;
+overflow: hidden;
 }
 
 .pynodeOutputContainer {
-    min-width: 430px;
-    min-height: 360px;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+min-width: 430px;
+min-height: 360px;
+width: 100%;
+height: 100%;
+overflow: hidden;
 }
 
 .pynodeEditorContainer {
-    min-width: 100px;
-    min-height: 100px;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+min-width: 100px;
+min-height: 100px;
+width: 100%;
+height: 100%;
+overflow: hidden;
 }
 
 .pynodeConsoleContainer {
-    min-width: 100px;
-    min-height: 100px;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+min-width: 100px;
+min-height: 100px;
+width: 100%;
+height: 100%;
+overflow: hidden;
 }
 
 /* PYNODE
-   ================================================== */
+================================================== */
 
 body.pynode .pageWholeWrapper {
-    width: 100%;
-    padding-bottom: 100px;
+width: 100%;
+padding-bottom: 100px;
 }
 
 body.pynode .pageBanner {
-    width: 100%;
-    height: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 20px;
-    background-color: #525252;
-    color: white;
+width: 100%;
+height: 20px;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 20px;
+background-color: #14161a;
+color: #c5c8c6;
+border-bottom: 1px solid #373b41;
 }
 
 body.pynode .pageTopWrapper {
-    height: 500px;
-    position: relative;
+height: 500px;
+position: relative;
 }
 
 body.pynode .appWrapper {
-    height: 760px;
-    background-color: #BBBBBB;
-    position: relative;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    box-shadow: inset 0 16px 20px -20px rgba(0, 0, 0, 0.75), inset 0 -16px 20px -20px rgba(0, 0, 0, 0.5);
+height: 760px;
+background-color: #1a1c1e;
+position: relative;
+padding-bottom: 20px;
+padding-top: 20px;
+box-shadow: inset 0 16px 24px -20px rgba(0, 0, 0, 0.9), inset 0 -16px 24px -20px rgba(0, 0, 0, 0.7);
 }
 
 body.pynode .appContainer {
-    height: 100%;
-    width: 100%;
-    visibility: hidden;
-    max-width: 1500px;
+height: 100%;
+width: 100%;
+visibility: hidden;
+max-width: 1500px;
 }
 
 body.pynode .appLeft {
-    width: calc(100% - 560px);
-    padding-left: 20px;
-    float: left;
-    height: 100%;
+width: calc(100% - 560px);
+padding-left: 20px;
+float: left;
+height: 100%;
 }
 
 body.pynode .editorWrapper, body.pynode_editor .editorWrapper {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
-    border-bottom: 10px solid #525252;
-    box-sizing: border-box;
+width: 100%;
+height: 100%;
+background-color: #1d1f21;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 0 1px #373b41;
+border-bottom: 4px solid #81a2be;
+border-radius: 10px 10px 4px 4px;
+box-sizing: border-box;
 }
 
 body.pynode #editorBox {
-    width: 100%;
-    height: 100%;
-    visibility: hidden;
+width: 100%;
+height: 100%;
+visibility: hidden;
 }
 
 body.pynode_editor #editorBox {
-    width: 100%;
-    height: calc(100% - 40px);
+width: 100%;
+height: calc(100% - 40px);
 }
 
 body.pynode .editorButtonBar, body.pynode_output .editorButtonBar {
-    width: 100%;
-    height: 35px;
-    background-color: #F0F0F0;
-    padding-top: 5px;
-    padding-left: 0px;
+width: 100%;
+height: 35px;
+background-color: #14161a;
+padding-top: 5px;
+padding-left: 0px;
+border-bottom: 1px solid #373b41;
+border-radius: 10px 10px 0 0;
 }
 
 body.pynode .editorButton, body.pynode_output .editorButton {
-    width: 100px;
-    height: 23px;
-    background-color: #ACACAC;
-    padding-top: 7px;
-    padding-left: 5px;
-    color: white;
-    margin-left: 5px;
-    float: left;
+width: 100px;
+height: 23px;
+background-color: #373b41;
+padding-top: 7px;
+padding-left: 5px;
+color: #c5c8c6;
+margin-left: 5px;
+float: left;
+border-radius: 6px;
+border: 1px solid #4b4e55;
+cursor: pointer;
+transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+body.pynode .editorButton:hover, body.pynode_output .editorButton:hover {
+background-color: #4b4e55;
+border-color: #81a2be;
 }
 
 body.pynode .editorButtonIcon, body.pynode_output .editorButtonIcon {
-    float: left;
-    padding-right: 5px;
-    margin-top: -1px;
+float: left;
+padding-right: 5px;
+margin-top: -1px;
 }
 
 body.pynode .buttonBarLayoutPanel, body.pynode_output .buttonBarLayoutPanel {
-    float: right;
-    padding-top: 2px;
-    padding-left: 20px;
-    width: 80px;
+float: right;
+padding-top: 2px;
+padding-left: 20px;
+width: 80px;
 }
 
 body.pynode .layoutButtonOn, body.pynode_output .layoutButtonOn {
-    width: 22px;
-    height: 22px;
-    padding-top: 2px;
-    padding-left: 2px;
-    float: left;
-    margin-right: 8px;
-    background-color: #E0E0E0;
-    box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+width: 22px;
+height: 22px;
+padding-top: 2px;
+padding-left: 2px;
+float: left;
+margin-right: 8px;
+background-color: #282a2e;
+box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.5);
+border-radius: 5px;
+border: 1px solid #81a2be;
 }
 
 body.pynode .layoutButtonOff, body.pynode_output .layoutButtonOff {
-    width: 22px;
-    height: 22px;
-    padding-top: 2px;
-    padding-left: 2px;
-    float: left;
-    margin-right: 8px;
-    cursor: pointer;
+width: 22px;
+height: 22px;
+padding-top: 2px;
+padding-left: 2px;
+float: left;
+margin-right: 8px;
+cursor: pointer;
+border-radius: 5px;
+border: 1px solid #373b41;
+transition: border-color 0.15s ease;
+}
+
+body.pynode .layoutButtonOff:hover, body.pynode_output .layoutButtonOff:hover {
+border-color: #81a2be;
 }
 
 body.pynode #runPlay, body.pynode_output #runPlay {
-    display: inherit;
+display: inherit;
 }
 
 body.pynode #runPlayLoad, body.pynode_output #runPlayLoad {
-    display: none;
+display: none;
 }
 
 body.pynode #runPause, body.pynode_output #runPause {
-    display: none;
+display: none;
 }
 
 body.pynode #runResume, body.pynode_output #runResume {
-    display: none;
+display: none;
 }
 
 body.pynode .editorHeader {
-    height: 20px;
-    width: 100%;
-    background-color: #F0F0F0;
+height: 20px;
+width: 100%;
+background-color: #14161a;
+border-radius: 10px 10px 0 0;
 }
 
 body.pynode #editor {
-    position: absolute;
-    width: 100px;
-    height: 710px;
+position: absolute;
+width: 100px;
+height: 710px;
 }
 
 body.pynode_editor #editor {
-    position: absolute;
-    width: 100%;
-    height: calc(100% - 50px);
+position: absolute;
+width: 100%;
+height: calc(100% - 50px);
 }
 
 body.pynode .appRight {
-    width: 500px;
-    float: right;
-    padding-right: 20px;
-    height: 100%;
+width: 500px;
+float: right;
+padding-right: 20px;
+height: 100%;
 }
 
 body.pynode .outputWrapper {
-    width: 500px;
-    height: 490px;
-    background-color: white;
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
-    border-bottom: 10px solid #525252;
-    box-sizing: border-box;
+width: 500px;
+height: 490px;
+background-color: #1d1f21;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 0 1px #373b41;
+border-bottom: 4px solid #81a2be;
+border-radius: 10px 10px 4px 4px;
+box-sizing: border-box;
 }
 
 body.pynode_output .outputWrapper {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    border-bottom: 10px solid #525252;
-    box-sizing: border-box;
+width: 100%;
+height: 100%;
+background-color: #1d1f21;
+border-bottom: 4px solid #81a2be;
+border-radius: 10px 10px 4px 4px;
+box-sizing: border-box;
 }
 
 body.pynode_output .outputPageWrapper {
-    width: 100%;
-    height: 100%;
-    background-color: #BBBBBB;
+width: 100%;
+height: 100%;
+background-color: #1a1c1e;
 }
 
 body.pynode_editor .editorPageWrapper {
-    width: 100%;
-    height: 100%;
-    background-color: #BBBBBB;
+width: 100%;
+height: 100%;
+background-color: #1a1c1e;
 }
 
 body.pynode_console .consolePageWrapper {
-    width: 100%;
-    height: 100%;
-    background-color: #BBBBBB;
+width: 100%;
+height: 100%;
+background-color: #1a1c1e;
 }
 
 body.pynode #outputBox {
-    width: 500px;
-    height: 400px;
-    background-color: white;
+width: 500px;
+height: 400px;
+background-color: #1d1f21;
 }
 
 body.pynode_output #outputBox {
-    width: 100%;
-    height: calc(100% - 80px);
-    background-color: white;
+width: 100%;
+height: calc(100% - 80px);
+background-color: #1d1f21;
 }
 
 body.pynode #output {
-    width: 500px;
-    height: 400px;
-    display: block;
+width: 500px;
+height: 400px;
+display: block;
 }
 
 body.pynode_output .outputClass {
-    width: 100%;
-    height: 100%;
-    display: block;
+width: 100%;
+height: 100%;
+display: block;
 }
 
 body.pynode .consoleWrapper {
-    width: 500px;
-    height: 250px;
-    margin-top: 20px;
-    background-color: white;
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
-    border-bottom: 10px solid #525252;
-    box-sizing: border-box;
+width: 500px;
+height: 250px;
+font-family: monospace;
+margin-top: 20px;
+background-color: #1d1f21;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 0 1px #373b41;
+border-bottom: 4px solid #81a2be;
+border-radius: 10px 10px 4px 4px;
+box-sizing: border-box;
 }
 
 body.pynode_console .consoleWrapper {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
-    border-bottom: 10px solid #525252;
-    box-sizing: border-box;
+width: 100%;
+height: 100%;
+background-color: #1d1f21;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 0 1px #373b41;
+border-bottom: 4px solid #81a2be;
+border-radius: 10px 10px 4px 4px;
+box-sizing: border-box;
+font-family: monospace;
 }
 
 body.pynode .consoleBox, body.pynode_console .consoleBox {
-    background-color: #F0F0F0;
-    width: calc(100% - 25px);
-    height: calc(100% - 62px);
-    padding-top: 10px;
-    padding-bottom: 12px;
-    padding-left: 10px;
-    padding-right: 15px;
+background-color: #14161a;
+width: calc(100% - 25px);
+height: calc(100% - 62px);
+padding-top: 10px;
+padding-bottom: 12px;
+padding-left: 10px;
+padding-right: 15px;
+border-radius: 0 0 6px 6px;
+font-family: monospace;
 }
 
 body.pynode #console, body.pynode_console #console {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    border: 1px solid #B1B1B1;
-    padding-left: 2px;
-    font-family: monospace;
-    overflow-y: auto;
+width: 100%;
+height: 100%;
+padding: 5;
+background-color: #1d1f21;
+border: 1px solid #373b41;
+border-radius: 6px;
+padding-left: 6px;
+overflow-y: auto;
+color: #b5bd68;
+}
+
+.console-code {
+  font-family: Consolas, Monaco, 'Lucida Console', 'Courier New', monospace;
 }
 
 body.pynode .appSectionTitle, body.pynode_output .appSectionTitle, body.pynode_editor .appSectionTitle, body.pynode_console .appSectionTitle {
-    color: white;
-    background-color: #525252;
-    padding-left: 10px;
-    width: calc(100% - 10px);
-    height: 30px;
-    padding-top: 10px;
+color: #c5c8c6;
+background-color: #14161a;
+padding-left: 12px;
+width: calc(100% - 12px);
+height: 30px;
+padding-top: 10px;
+border-radius: 10px 10px 0 0;
+border-bottom: 1px solid #373b41;
+letter-spacing: 0.04em;
 }
 
 body.pynode .appSectionEnlarge, body.pynode_output .appSectionEnlarge {
-    float: right;
-    padding-right: 10px;
+float: right;
+padding-right: 10px;
 }
 
 body.pynode .appSectionBarIcon, body.pynode_editor .appSectionBarIcon {
-    width: 30px;
-    height: 20px;
-    margin-bottom: 2px;
-    float: right;
+width: 30px;
+height: 20px;
+margin-bottom: 2px;
+float: right;
+opacity: 0.65;
+transition: opacity 0.15s ease;
+}
+
+body.pynode .appSectionBarIcon:hover, body.pynode_editor .appSectionBarIcon:hover {
+opacity: 1;
 }
 
 body.pynode .appSectionBarIconFirst, body.pynode_editor .appSectionBarIconFirst {
-    width: 20px;
-    height: 20px;
-    float: right;
-    padding-left: 12px;
+width: 20px;
+height: 20px;
+float: right;
+padding-left: 12px;
+opacity: 0.65;
 }
 
 body.pynode .appSectionBarIconDivider, body.pynode_editor .appSectionBarIconDivider {
-    width: 0px;
-    height: 28px;
-    margin-top: -4px;
-    float: right;
-    border-right: 1px solid #2E2E2E;
-    border-left: 1px solid #6A6A6A;
-
+width: 0px;
+height: 28px;
+margin-top: -4px;
+float: right;
+border-right: 1px solid #14161a;
+border-left: 1px solid #4b4e55;
 }
 
 body.pynode .pageBottomWrapper {
-    height: 400px;
-    height: auto;
-    position: relative;
+height: 400px;
+height: auto;
+position: relative;
 }
 
 body.pynode .pynodeGithubStar {
-    float: right;
-    height: 50px;
+float: right;
+height: 50px;
 }
 
 body.pynode .pynodeLogo {
-    width: 135px;
-    height: 130px;
-    padding-top: 15px;
-    float: left;
+width: 135px;
+height: 130px;
+padding-top: 15px;
+float: left;
 }
 
 body.pynode .pynodeTitle {
-    height: 105px;
-    font: 6.0rem/1.1 'Oswald', sans-serif;
+height: 105px;
+font: 6.0rem/1.1 'Oswald', sans-serif;
+color: #c5c8c6;
 }
 
 body.pynode .pynodeSubtitle {
-    height: 20px;
-    padding-bottom: 8px;
+height: 20px;
+padding-bottom: 8px;
 }
 
 body.pynode .pynodeAuthorSubtitle {
-    height: 20px;
-    padding-bottom: 10px;
+height: 20px;
+padding-bottom: 10px;
 }
 
 body.pynode .pynodeDescription {
-    height: 50px;
+height: 50px;
 }
 
 body.pynode .pynodeDownloadBox {
-    float: left;
-    width: 100%;
-    height: 50px;
-    padding-bottom: 10px;
+float: left;
+width: 100%;
+height: 50px;
+padding-bottom: 10px;
 }
 body.pynode .pynodeDownloadBoxLinux {
-    float: left;
-    width: 100%;
-    height: 70px;
-    padding-bottom: 5px;
+float: left;
+width: 100%;
+height: 70px;
+padding-bottom: 5px;
 }
 
 body.pynode .pynodeDownloadBoxIcon {
-    float: left;
-    height: 50px;
-    width: 60px;
+float: left;
+height: 50px;
+width: 60px;
 }
 body.pynode .pynodeDownloadBoxIconLinux {
-    float: left;
-    height: 50px;
-    margin-left: -12px;
-    width: 72px;
+float: left;
+height: 50px;
+margin-left: -12px;
+width: 72px;
 }
 
 body.pynode .pynodeDownloadBoxTextWin {
-    float: left;
-    padding-top: 3px;
-    height: 50px;
+float: left;
+padding-top: 3px;
+height: 50px;
 }
 body.pynode .pynodeDownloadBoxTextMac {
-    float: left;
-    padding-top: 16px;
-    height: 50px;
+float: left;
+padding-top: 16px;
+height: 50px;
 }
 body.pynode .pynodeDownloadBoxTextLinux {
-    float: left;
-    padding-top: 24px;
-    height: 50px;
+float: left;
+padding-top: 24px;
+height: 50px;
 }
 
 body.pynode code {
-    font-family: monospace;
-    font: 1.0rem/1.5 monospace;
-    border: 1px solid #B1B1B1;
-    background-color: #F0F0F0;
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-bottom: 1px;
+font-family: monospace;
+font: 1.0rem/1.5 monospace;
+border: 1px solid #373b41;
+background-color: #282a2e;
+color: #81a2be;
+border-radius: 4px;
+padding-left: 4px;
+padding-right: 4px;
+padding-bottom: 1px;
 }
 
 body.pynode .codeInline {
-    border: none;
+border: none;
 }
 
 body.pynode li {
-    margin: 5px 0px;
+margin: 5px 0px;
+color: #c5c8c6;
 }
 
 /* GENERAL
-   ================================================== */
+================================================== */
 .pageTop {
-    width: 750px;
-    height: calc(100% - 70px);
-    margin-top: 50px;
-    margin-left: calc(50% - 425px);
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.15);
-    background-color: white;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 40px;
+width: 750px;
+height: calc(100% - 70px);
+margin-top: 50px;
+margin-left: calc(50% - 425px);
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px #373b41;
+background-color: #282a2e;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 40px;
+border-radius: 12px;
 }
 
 .pageWhole {
-    width: 750px;
-    margin-left: calc(50% - 425px);
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.15);
-    background-color: white;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    margin-top: 30px;
+width: 750px;
+margin-left: calc(50% - 425px);
+box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px #373b41;
+background-color: #282a2e;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+margin-top: 30px;
+border-radius: 12px;
 }
 
 body .floatLeft {
-    float: left;
+float: left;
 }
 
 body .floatRight {
-    float: right;
+float: right;
 }
 
 /* FOOTER
-   ================================================== */
+================================================== */
 
 .pageInfoWrapper {
-    width: 100%;
-    height: 12px;
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    position: absolute;
-    bottom: 0;
+width: 100%;
+height: 12px;
+text-align: center;
+padding-top: 5px;
+padding-bottom: 5px;
+position: absolute;
+bottom: 0;
+border-top: 1px solid #373b41;
 }
 
 .pageInfoWrapperHome {
-    width: 100%;
-    height: 10px;
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+width: 100%;
+height: 10px;
+text-align: center;
+padding-top: 5px;
+padding-bottom: 5px;
+}
+
+/* ACE EDITOR — TOMORROW NIGHT THEME
+================================================== */
+/* JS: editor.setTheme("ace/theme/tomorrow_night"); */
+
+.ace_editor {
+background-color: #1d1f21 !important;
+color: #c5c8c6 !important;
+font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace !important;
+font-size: 13px !important;
+line-height: 1.6 !important;
+}
+
+/* Gutter */
+.ace_gutter {
+background-color: #14161a !important;
+color: #969896 !important;
+border-right: 1px solid #373b41 !important;
+}
+
+.ace_gutter-cell {
+padding-left: 10px !important;
+padding-right: 10px !important;
+}
+
+.ace_gutter-cell.ace_active-line {
+background-color: #282a2e !important;
+color: #c5c8c6 !important;
+font-weight: 600 !important;
+}
+
+/* Active line */
+.ace_marker-layer .ace_active-line {
+background-color: #282a2e !important;
+}
+
+/* Selection */
+.ace_marker-layer .ace_selection {
+background-color: #373b41 !important;
+}
+
+.ace_marker-layer .ace_selected-word {
+background-color: #373b41 !important;
+border: 1px solid #4b4e55 !important;
+border-radius: 3px !important;
+}
+
+/* Bracket match */
+.ace_bracket {
+border: 1px solid #81a2be !important;
+border-radius: 2px !important;
+}
+
+/* Print margin */
+.ace_print-margin {
+background-color: #282a2e !important;
+width: 1px !important;
+}
+
+/* Cursor */
+.ace_cursor {
+color: #c5c8c6 !important;
+border-left: 2px solid #c5c8c6 !important;
+}
+
+/* Scrollbars */
+.ace_scrollbar-v::-webkit-scrollbar,
+.ace_scrollbar-h::-webkit-scrollbar {
+width: 8px;
+height: 8px;
+}
+.ace_scrollbar-v::-webkit-scrollbar-track,
+.ace_scrollbar-h::-webkit-scrollbar-track {
+background: #14161a;
+}
+.ace_scrollbar-v::-webkit-scrollbar-thumb,
+.ace_scrollbar-h::-webkit-scrollbar-thumb {
+background: #373b41;
+border-radius: 4px;
+}
+.ace_scrollbar-v::-webkit-scrollbar-thumb:hover,
+.ace_scrollbar-h::-webkit-scrollbar-thumb:hover {
+background: #81a2be;
+}
+
+/* ── Syntax tokens ── */
+
+/* Keywords */
+.ace_keyword {
+color: #b294bb !important;
+}
+
+.ace_keyword.ace_operator {
+color: #c5c8c6 !important;
+}
+
+/* Strings */
+.ace_string {
+color: #b5bd68 !important;
+}
+
+.ace_string.ace_regexp {
+color: #8abeb7 !important;
+}
+
+/* Comments */
+.ace_comment {
+color: #969896 !important;
+font-style: italic !important;
+}
+
+/* Numbers */
+.ace_constant.ace_numeric {
+color: #de935f !important;
+}
+
+/* Boolean / null */
+.ace_constant.ace_language {
+color: #de935f !important;
+}
+
+/* Other constants */
+.ace_constant.ace_other {
+color: #de935f !important;
+}
+
+/* Variables */
+.ace_variable {
+color: #c5c8c6 !important;
+}
+
+.ace_variable.ace_parameter {
+color: #de935f !important;
+font-style: italic !important;
+}
+
+/* Function names */
+.ace_entity.ace_name.ace_function {
+color: #81a2be !important;
+}
+
+/* Class / type names */
+.ace_entity.ace_name.ace_type,
+.ace_entity.ace_name.ace_class {
+color: #f0c674 !important;
+text-decoration: underline !important;
+text-decoration-color: #4b4030 !important;
+text-underline-offset: 3px !important;
+}
+
+/* HTML/XML tags */
+.ace_entity.ace_name.ace_tag {
+color: #cc6666 !important;
+}
+
+.ace_entity.ace_other.ace_attribute-name {
+color: #de935f !important;
+}
+
+/* Storage */
+.ace_storage {
+color: #b294bb !important;
+}
+
+.ace_storage.ace_type {
+color: #8abeb7 !important;
+font-style: italic !important;
+}
+
+/* Support */
+.ace_support.ace_function {
+color: #8abeb7 !important;
+}
+
+.ace_support.ace_class {
+color: #f0c674 !important;
+}
+
+.ace_support.ace_type {
+color: #8abeb7 !important;
+font-style: italic !important;
+}
+
+/* Punctuation */
+.ace_punctuation {
+color: #c5c8c6 !important;
+}
+
+.ace_punctuation.ace_definition.ace_tag {
+color: #cc6666 !important;
+}
+
+/* Invalid */
+.ace_invalid {
+background-color: #cc6666 !important;
+color: #1d1f21 !important;
+border-radius: 2px !important;
+}
+
+/* Invisible characters */
+.ace_invisible {
+color: #373b41 !important;
+}
+
+/* Indent guides */
+.ace_indent-guide {
+background: repeating-linear-gradient(
+  to bottom,
+  transparent,
+  transparent 1px,
+  #282a2e 1px,
+  #282a2e 2px
+) !important;
+opacity: 0.6 !important;
 }
