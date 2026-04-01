@@ -13,6 +13,9 @@
     <script src="js/d3/d3.v3.min.js?version=0.9.7"></script>
     <script src="js/cola/cola.v3.js?version=0.9.7"></script>
     <script src="js/greuler/greuler.js?version=0.9.8"></script>
+    <script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ace.js"></script>
+    <script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ext-language_tools.js"></script>
+    <script src="https://www.unpkg.com/ace-linters@latest/build/ace-linters.js"></script>
     <script>
         var editor_exists = false;
         var pynode_output;
@@ -213,12 +216,13 @@
         <div class="pageTopWrapper">
             <div class="pageTop">
                 <div class="pynodeLogo"><img src="images/logo.png" width="120" height="120"></div>
-                <div class="pynodeTitle">PyNode</div>
+                <div class="pynodeTitle">PyNode-NG</div>
                 <div class="pynodeSubtitle">
-                    <h3>Graph Theory Visualizer</h3>
+                    <h3>Graph Theory Visualizer, Modified to VCE Algorithmics 3/4 specifications</h3>
                 </div>
                 <div class="pynodeAuthorSubtitle">
                     <h5>By <a href="https://github.com/alexsocha">Alex Socha</a></h5>
+                    <h5>Modified By <a href="https://github.com/jan0014">Ashwin Janarthanan</a></h5>
                 </div>
                 <div class="pynodeDescription">
                     <p>PyNode allows you to create, animate and display graphs with a simple Python interface, all
@@ -773,7 +777,12 @@
 <script src="js/ace/ext-language-tools.js" type="text/javascript" charset="utf-8"></script>
 <script>
     resize();
-    var editor = ace.edit("editor");
+    ace.require("ace/ext/language_tools");
+    var editor = ace.edit("editor", {
+      enableBasicAutocompletion: true,
+      enableLiveAutocompletion: true,
+      mode: "ace/mode/python"
+    });
     editor.$blockScrolling = Infinity;
     editor_exists = true;
 
